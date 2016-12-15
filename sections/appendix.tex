@@ -1,0 +1,26 @@
+\documentclass[../main.tex]{subfiles}
+ 
+\begin{document}
+It is often useful to refer back (or forward) to other sections in the article.  Such references are made by section number.  When a section reference starts a sentence, Section is spelled out; otherwise use its abbreviation, for example, ``In Sec.~2 we showed...'' or ``Section~2.1 contained a description...''.  References to figures, tables, and theorems are handled the same way.
+
+\subsection{Formatting Equations}
+Equations may appear in line with the text, if they are simple, short, and not of major importance; e.g., $\beta = b/r$.  Important equations appear on their own line.  Such equations are centered.  For example, ``The expression for the field of view is
+\begin{equation}
+\label{eq:fov}
+2 a = \frac{(b + 1)}{3c} \, ,
+\end{equation}
+where $a$ is the ...'' Principal equations are numbered, with the equation number placed within parentheses and right justified.  
+
+Equations are considered to be part of a sentence and should be punctuated accordingly. In the above example, a comma follows the equation because the next line is a subordinate clause.  If the equation ends the sentence, a period should follow the equation.  The line following an equation should not be indented unless it is meant to start a new paragraph.  Indentation after an equation is avoided in LaTeX by not leaving a blank line between the equation and the subsequent text.
+
+References to equations include the equation number in parentheses, for example, ``Equation~(\ref{eq:fov}) shows ...'' or ``Combining Eqs.~(2) and (3), we obtain...''  Using a tilde in the LaTeX source file between two characters avoids unwanted line breaks.
+
+\subsection{Formatting Theorems}
+
+To include theorems in a formal way, the theorem identification should appear in a 10-point, bold font, left justified and followed by a period.  The text of the theorem continues on the same line in normal, 10-point font.  For example, 
+
+\noindent\textbf{Theorem 1.} For any unbiased estimator...
+
+Formal statements of lemmas and algorithms receive a similar treatment.
+
+\end{document}
