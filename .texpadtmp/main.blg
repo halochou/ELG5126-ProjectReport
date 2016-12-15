@@ -2,11 +2,11 @@ This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: /Users/Zhou/Github/ELG5126-ProjectReport/.texpadtmp/main.aux
 The style file: ../spiebib.bst
-Database file #1: ../report.bib
+Database file #1: ../reference.bib
 Warning--empty year in Lees-Miller-LaTeX-course-1
 You've used 8 entries,
             1993 wiz_defined-function locations,
-            563 strings with 5063 characters,
+            563 strings with 5066 characters,
 and the built_in function-call counts, 1822 in all, are:
 = -- 151
 > -- 74

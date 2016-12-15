@@ -8,9 +8,11 @@
 \BOOKMARK [2][-]{subsection.2.6}{References}{section.2}% 8
 \BOOKMARK [2][-]{subsection.2.7}{Footnotes}{section.2}% 9
 \BOOKMARK [1][-]{section.3}{H.264 Decoding Overview}{}% 10
-\BOOKMARK [1][-]{section.4}{Software Design Overview}{}% 11
-\BOOKMARK [1][-]{section.5}{H.264 and Implementation Details}{}% 12
-\BOOKMARK [1][-]{section.6}{Result and Design Exploration}{}% 13
-\BOOKMARK [1][-]{appendix.A}{MISCELLANEOUS FORMATTING DETAILS}{}% 14
-\BOOKMARK [2][-]{subsection.A.1}{Formatting Equations}{appendix.A}% 15
-\BOOKMARK [2][-]{subsection.A.2}{Formatting Theorems}{appendix.A}% 16
+\BOOKMARK [2][-]{subsection.3.1}{Subsection Attributes}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Sub-subsection attributes}{subsection.3.1}% 12
+\BOOKMARK [1][-]{section.4}{Software Design Overview}{}% 13
+\BOOKMARK [1][-]{section.5}{H.264 and Implementation Details}{}% 14
+\BOOKMARK [1][-]{section.6}{Result and Design Exploration}{}% 15
+\BOOKMARK [1][-]{appendix.A}{MISCELLANEOUS FORMATTING DETAILS}{}% 16
+\BOOKMARK [2][-]{subsection.A.1}{Formatting Equations}{appendix.A}% 17
+\BOOKMARK [2][-]{subsection.A.2}{Formatting Theorems}{appendix.A}% 18
