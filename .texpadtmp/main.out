@@ -1,18 +1,21 @@
 \BOOKMARK [1][-]{section.1}{INTRODUCTION}{}% 1
-\BOOKMARK [1][-]{section.2}{Python Programming Language Overview}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Title and Author Information}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Abstract and Keywords}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Body of Paper}{section.2}% 5
+\BOOKMARK [1][-]{section.2}{Python\040Programming\040Language\040Overview}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Title\040and\040Author\040Information}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Abstract\040and\040Keywords}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Body\040of\040Paper}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.4}{Appendices}{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.5}{Acknowledgments}{section.2}% 7
 \BOOKMARK [2][-]{subsection.2.6}{References}{section.2}% 8
 \BOOKMARK [2][-]{subsection.2.7}{Footnotes}{section.2}% 9
-\BOOKMARK [1][-]{section.3}{H.264 Decoding Overview}{}% 10
-\BOOKMARK [2][-]{subsection.3.1}{Subsection Attributes}{section.3}% 11
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Sub-subsection attributes}{subsection.3.1}% 12
-\BOOKMARK [1][-]{section.4}{Software Design Overview}{}% 13
-\BOOKMARK [1][-]{section.5}{H.264 and Implementation Details}{}% 14
-\BOOKMARK [1][-]{section.6}{Result and Design Exploration}{}% 15
-\BOOKMARK [1][-]{appendix.A}{MISCELLANEOUS FORMATTING DETAILS}{}% 16
-\BOOKMARK [2][-]{subsection.A.1}{Formatting Equations}{appendix.A}% 17
-\BOOKMARK [2][-]{subsection.A.2}{Formatting Theorems}{appendix.A}% 18
+\BOOKMARK [1][-]{section.3}{H.264\040Decoding\040Overview}{}% 10
+\BOOKMARK [2][-]{subsection.3.1}{\040Main\040Decoding\040Processes\040}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{Prediction\040overview}{section.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.2.1}{\040Macroblocks\040and\040Further\040Block\040Division\040}{subsection.3.2}% 13
+\BOOKMARK [3][-]{subsubsection.3.2.2}{\040Intra-Prediction\040}{subsection.3.2}% 14
+\BOOKMARK [3][-]{subsubsection.3.2.3}{\040Inter-Prediction\040}{subsection.3.2}% 15
+\BOOKMARK [1][-]{section.4}{Software\040Design\040Overview}{}% 16
+\BOOKMARK [1][-]{section.5}{H.264\040and\040Implementation\040Details}{}% 17
+\BOOKMARK [1][-]{section.6}{Result\040and\040Design\040Exploration}{}% 18
+\BOOKMARK [1][-]{appendix.A}{MISCELLANEOUS\040FORMATTING\040DETAILS}{}% 19
+\BOOKMARK [2][-]{subsection.A.1}{Formatting\040Equations}{appendix.A}% 20
+\BOOKMARK [2][-]{subsection.A.2}{Formatting\040Theorems}{appendix.A}% 21
