@@ -1,45 +1,43 @@
 \documentclass[../main.tex]{subfiles}
  
 \begin{document}
+We chose Python as the main programming language to implement this project.
 
-% \section{Python Programming Language Overview}
-This section describes the normal structure of a manuscript and how each part should be handled.  The appropriate vertical spacing between various parts of this document is achieved in LaTeX through the proper use of defined constructs, such as \verb|\section{}|.  In LaTeX, paragraphs are separated by blank lines in the source file. 
+Python is a widely used high-level, general-purpose, interpreted, dynamic programming language. 
+Its design philosophy emphasizes code readability, 
+and its syntax allows programmers to express concepts in fewer lines of code than possible in languages such as C++ or Java.
 
-At times it may be desired, for formatting reasons, to break a line without starting a new paragraph.  This situation may occur, for example, when formatting the article title, author information, or section headings.  Line breaks are inserted in LaTeX by entering \verb|\\| or \verb|\linebreak| in the LaTeX source file at the desired location.  
+Although programs written in C/C++ mostly have significantly better performence then ones in Python, they have to pay for verbosity as tradeoff.
+Due to the statement from Python's official website, Python code is typically 5-10 times shorter than equivalent C++ code.
 
-\subsection{Title and Author Information}
-\label{sec:title}
+The dynamic property and modern syntax of Python can eliminate much more noise in the code, making the idea behind the program more clear. For example, to calculate Fibbonacci sequence in plain iterative method, we can implement it as below:
 
-The article title appears centered at the top of the first page.  The title font is 16 point, bold.  The rules for capitalizing the title are the same as for sentences; only the first word, proper nouns, and acronyms should be capitalized.  Avoid using acronyms in the title.  Keep in mind that people outside your area of expertise might read your article. At the first occurrence of an acronym, spell it out, followed by the acronym in parentheses, e.g., noise power spectrum (NPS). 
+C:
 
-The author list is in 12-pt. regular, centered. Omit titles and degrees such as Dr., Prof., Ph.D., etc. The list of affiliations follows the author list. Each author's affiliation should be clearly noted. Superscripts may be used to identify the correspondence between the authors and their respective affiliations.  Further author information, such as e-mail address, complete postal address, and web-site location, may be provided in a footnote by using \verb|\authorinfo{}|, as demonstrated above.
+\begin{verbatim}
+    long long int fibb(int n) {
+        int fnow = 0, fnext = 1, tempf;
+        while(--n>0){
+            tempf = fnow + fnext;
+            fnow = fnext;
+            fnext = tempf;
+            }
+            return fnext;   
+    }
+\end{verbatim}
 
-\subsection{Abstract and Keywords}
-The title and author information is immediately followed by the Abstract. The Abstract should concisely summarize the key findings of the paper.  It should consist of a single paragraph containing no more than 250 words.  The Abstract does not have a section number.  A list of up to eight keywords should immediately follow the Abstract after a blank line.  These keywords will be included in a searchable database at SPIE.
+Python:
+\begin{verbatim}
+    def fibIter(n):
+        if n < 2:
+            return n
+        fibPrev = 1
+        fib = 1
+        for num in xrange(2, n):
+            fibPrev, fib = fib, fib + fibPrev
+        return fib
+\end{verbatim}
 
-\subsection{Body of Paper}
-The body of the paper consists of numbered sections that present the main findings.  These sections should be organized to best present the material.  See Sec.~\ref{sec:sections} for formatting instructions.
-
-\subsection{Appendices}
-Auxiliary material that is best left out of the main body of the paper, for example, derivations of equations, proofs of theorems, and details of algorithms, may be included in appendices.  Appendices are enumerated with uppercase Latin letters in alphabetic order, and appear just before the Acknowledgments and References. Appendix~\ref{sec:misc} contains more about formatting equations and theorems.
-
-\subsection{Acknowledgments}
-In the Acknowledgments section, appearing just before the References, the authors may credit others for their guidance or help.  Also, funding sources may be stated.  The Acknowledgments section does not have a section number.
-
-\subsection{References}
-SPIE is able to display the references section of your paper in the SPIE Digital Library, complete with links to referenced journal articles, proceedings papers, and books, when available. This added feature will bring more readers to your paper and improve the usefulness of the SPIE Digital Library for all researchers. The References section does not have a section number.  The references are numbered in the order in which they are cited.  Examples of the format to be followed are given at the end of this document.  
-
-The reference list at the end of this document is created using BibTeX, which looks through the file {\ttfamily report.bib} for the entries cited in the LaTeX source file.  The format of the reference list is determined by the bibliography style file {\ttfamily spiebib.bst}, as specified in the \verb|\bibliographystyle{spiebib}| command.  Alternatively, the references may be directly formatted in the LaTeX source file.
-
-For books\cite{Lamport94,Alred03,Goossens97}, the listing includes the list of authors, book title, publisher, city, page or chapter numbers, and year of publication.  A reference to a journal article\cite{Metropolis53} includes the author list, title of the article (in quotes), journal name (in italics, properly abbreviated), volume number (in bold), inclusive page numbers, and year.  By convention\cite{Lamport94}, article titles are capitalized as described in Sec.~\ref{sec:title}.  A reference to a proceedings paper or a chapter in an edited book\cite{Gull89a} includes the author list, title of the article (in quotes), volume or series title (in italics), volume number (in bold), if applicable, inclusive page numbers, publisher, city, and year.  References to an article in the SPIE Proceedings may include the conference name (in italics), as shown in Ref.~\citenum{Hanson93c}. For websites\cite{Lees-Miller-LaTeX-course-1} the listing includes the list of authors, title of the article (in quotes), website name, article date, website address either enclosed in chevron symbols ('\(<\)' and '\(>\)'),  underlined or linked, and the date the website was accessed. 
-
-If you use this formatting, your references will link your manuscript to other research papers that are in the CrossRef system. Exact punctuation is required for the automated linking to be successful. 
-
-Citations to the references are made using superscript numerals, as demonstrated in the above paragraph.  One may also directly refer to a reference within the text, e.g., ``as shown in Ref.~\citenum{Metropolis53} ...''
-
-\subsection{Footnotes}
-Footnotes\footnote{Footnotes are indicated as superscript symbols to avoid confusion with citations.} may be used to provide auxiliary information that doesn't need to appear in the text, e.g., to explain measurement units.  They should be used sparingly, however.  
-
-Only nine footnote symbols are available in LaTeX. If you have more than nine footnotes, you will need to restart the sequence using the command  \verb|\footnote[1]{Your footnote text goes here.}|. If you don't, LaTeX will provide the error message {\ttfamily Counter too large.}, followed by the offending footnote command.
+As a project which aims to be a concept prototype, we care more about readability and productivity instead of performence. Python works well for this target.
 
 \end{document}
