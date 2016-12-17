@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  16 DEC 2016 23:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  17 DEC 2016 00:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -394,14 +394,14 @@ Package rerunfilecheck Info: File `python.out' has not changed.
 Here is how much of TeX's memory you used:
  6150 strings out of 493014
  88774 string characters out of 6133351
- 176081 words of memory out of 5000000
+ 177081 words of memory out of 5000000
  9637 multiletter control sequences out of 15000+600000
  3808 words of font info for 15 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,5n,26p,782b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on python.pdf (1 page, 37833 bytes).
+Output written on python.pdf (1 page, 37921 bytes).
 PDF statistics:
  21 PDF objects out of 1000 (max. 8388607)
  15 compressed objects within 1 object stream
