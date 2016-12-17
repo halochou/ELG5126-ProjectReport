@@ -14,23 +14,117 @@ Definition TV services. The High Profiles add tools to the Main Profile which ca
 
 \subsection{ Main Decoding Processes }
 
-The decoding process is carried out by an H.264 video decoder. Flow diagram is shown in Figure 1. (此处有图1) Initially, decoder codes compressed bitstream and does entropy decoding, obtaining a coefficient matrix. The following steps are dequantization and IDCT. Residual is output of this stage. Then the decoder will decode the frame depending on the combination of residual and prediction results. Notice that, in the both of coder and decoder, data is processed in units of macroblock. A decoded residual macroblock is formed by re-scaling and inverse transformation. Prediction is created in decoder and is added to the residual to generated a decoded macroblock. 
+The decoding process is carried out by an H.264 video decoder. Flow diagram is shown in Figure \ref{fig:decproc}.
+
+\begin{figure} [ht]
+\begin{center}
+\begin{tabular}{c} %% tabular useful for creating an array of images 
+\includegraphics[height=5cm]{dec_proc.png}
+\end{tabular}
+\end{center}
+\caption[decproc] 
+{ \label{fig:decproc} H.264 decoding process}
+\end{figure} 
+
+Initially, decoder codes compressed bitstream and does entropy decoding, obtaining a coefficient matrix. The following steps are dequantization and IDCT. Residual is output of this stage. Then the decoder will decode the frame depending on the combination of residual and prediction results. Notice that, in the both of coder and decoder, data is processed in units of macroblock. A decoded residual macroblock is formed by re-scaling and inverse transformation. Prediction is created in decoder and is added to the residual to generated a decoded macroblock. 
 
 \subsubsection{ Parsing Process with Entropy Decoding }
 
-Inputs to parsing process are bitstream from contents of video slices. Output of this process are syntax element values. (Video sequence that is represented in a particular format which is synatx). (此处有图2) Actually, several methods are specified by H.264 for coding symbols, including Fixed Length Code, Exponential-Golomb variable length code, CAVLC and CABAC. 
+Inputs to parsing process are bitstream from contents of video slices. Output of this process are syntax element values. (Video sequence that is represented in a particular format which is synatx).
+
+\begin{figure} [ht]
+\begin{center}
+\begin{tabular}{c} %% tabular useful for creating an array of images 
+\includegraphics[width=0.5\textwidth]{parsing.png}
+\end{tabular}
+\end{center}
+\caption[parsing] 
+{ \label{fig:parsing} Entropy decoding process}
+\end{figure} 
+
+Actually, several methods are specified by H.264 for coding symbols, including Fixed Length Code, Exponential-Golomb variable length code, CAVLC and CABAC. 
 
 And the data can be divided into two parts: decoder controlling parameters and transform coefficients. Above the slice data level, bits are decoded using Fixed Length decoder or Exp-Golomb decoder. In the slice data level and below, coefficient values are decoded in one of two ways. In CABAC mode, all symbols are decoded by CABAC decoder. Otherwise, coefficient values using CAVLC and other symbols are coded using fixed length or Exp-Golomb decoder. In our baseline decoder, Exp-Golomb and CAVLC are utilized.
 
 \subsubsection{ Exponential Golomb Decoder }
 
-Exponential Golomb codes (ExpG) are an efficient way of representing data symbols with varying probabilities. It assigns short codewords to frequently-occurring data symbols and long codewords to less common data symbols. A parameter code\_num indicates codewords. The length of Exponential-Golomb codes are varying with two properties:
+Exponential Golomb codes (ExpG) are an efficient way of representing data symbols with varying probabilities. It assigns short codewords to frequently-occurring data symbols and long codewords to less common data symbols. A parameter $code\_num$ indicates codewords. The length of Exponential-Golomb codes are varying with two properties:
 
-1. With the increase of code\_num, code length also rises.
+\begin{enumerate}
+\item With the increase of $code\_num$, code length also rises.
+\item Without looking up for tables, each code can be generated and decode algorithmically. 
+\end{enumerate}
 
-2. Without looking up for tables, each code can be generated and decode algorithmically. 
+The structure of an Exp-Golomb codeword:
 
-%此处有两段没有加进去
+\[ [\text{Zero prefix}]\ 1\ [\text{Information}] \]
+
+The codeword consists of $M$ zero prefix ($M \geq 0$, $M$ is an integer), a one and $M$-bit information. The length of the codeword is $2M+1$ bit.
+
+The process of decoding $code\_num$ is followed: 
+
+\begin{enumerate}
+\item The decoder reads $M$ consecutive zeros and calculates the total length of the next Exp-Golomb codeword as $2M + 1$ bits. 
+\item Read a one and ignore it.
+\item It reads the remaining $M$ bits and calculates $code\_num$ which is then mapped to $k$ (data).
+\end{enumerate}
+
+There is an example:
+
+\[ codeword = \underbrace{0000000}_\text{Zero Prefix} \textbf{1} \underbrace{1100011}_\text{Info.}  \]
+
+% \begin{figure} [ht]
+% \begin{center}
+% \begin{tabular}{c} %% tabular useful for creating an array of images 
+% \includegraphics[width=0.5\textwidth]{expG.png}
+% \end{tabular}
+% \end{center}
+% \caption[expG] 
+% { \label{fig:expG} Exp-Golomb decoding process}
+% \end{figure} 
+
+The codeword to be decoded has 7 leading zeros and a one, followed by the information code $1100011$ which will be converted to decimal number. Then we calculate the result $code\_num$ depending on the formula: 
+
+\[ code\_num = 2M + \text{Information} - 1 \]
+
+Then $code\_num$ is mapped to $k$ (data) according to different mapping types which is shown in Table \ref{tab:mapping}.
+
+% \begin{figure} [ht]
+% \begin{center}
+% \begin{tabular}{c} %% tabular useful for creating an array of images 
+% \includegraphics[width=0.8\textwidth]{mapping.png}
+% \end{tabular}
+% \end{center}
+% \caption[mapping] 
+% { \label{fig:mapping} Code number mapping methods}
+% \end{figure} 
+
+\begin{table}[ht]
+% \label{tab:mapping}
+\begin{center}       
+\begin{tabular}{|l|p{10cm}|} 
+\hline
+\rule[-1ex]{0pt}{3.5ex} Mapping type & Description \\  
+\hline
+\rule[-1ex]{0pt}{3.5ex} $ue$ & Unsigned direct mapping.
+\[code\_num = k\]
+Used for macroblock type, reference frame index and others. \\  
+\hline
+\rule[-1ex]{0pt}{3.5ex} $te$ & Truncated mapping: if the largest possible value of $k$ is 1, then a single bit $b$ is sent where $b = !code\_num$, otherwise $ue$ mapping is used. \\
+\hline
+\rule[-1ex]{0pt}{3.5ex} $se$ & Signed mapping, used for motion vector difference, delta QP and others. $k$ is mapped to $code\_num$ as follows: 
+\[code num = 2|k| \quad (k \leq 0) \] 
+\[code num = 2|k| - 1 \quad (k > 0) \] 
+
+$code\_num$ is mapped to $k$ as follows:
+\[k = (−1)^{code\_num + 1}ceil(code\_num / 2) \] \\
+\hline
+\rule[-1ex]{0pt}{3.5ex} $me$ & Mapped symbols, $k$ is mapped to $code\_num$ according to a table speciﬁed in the standard. \\
+\hline
+\end{tabular}
+\end{center}
+\caption[mapping]{\label{tab:mapping} Code number mapping types} 
+\end{table}
 
 \subsubsection{ Context Adaptive Variable Length Coding (CAVLC) }
 Residual, the transform coefficients are decoded by CAVLC decoder. Each $8 \times 8$ block of quantized transform coefficients is processed as four $4 \times 4$ blocks for the purposes of CAVLC encoding and decoding. The decoding process can be divided into 5 stages:
@@ -69,10 +163,9 @@ predicted from samples in one or two previously-coded frames.
    \includegraphics[height=5cm]{marcoblock.jpg}
    \end{tabular}
    \end{center}
-   \caption[example] 
+   \caption[mbtypes] 
 %>>>> use \label inside caption to get Fig. number with \ref{}
-   { \label{fig:example} 
-Marcoblock types }
+   { \label{fig:mbtypes} Marcoblock types }
    \end{figure}     % 在reference中引用
 
 \subsubsection{ Intra-Prediction }
@@ -89,11 +182,11 @@ prediction modes.
 \begin{table}[ht]
 \label{tab:list}
 \begin{center}       
-\begin{tabular}{|l|l|} 
+\begin{tabular}{|l|p{10cm}|} 
 \hline
 \rule[-1ex]{0pt}{3.5ex}  Intra prediction block size & Notes\\  
 \hline
-\rule[-1ex]{0pt}{3.5ex}  $16 \times 16$ (luma) & A single $16 \times 16$ prediction block P is generated.   \\
+\rule[-1ex]{0pt}{3.5ex}  $16 \times 16$ (luma) &  A single $16 \times 16$ prediction block P is generated.   \\
 \hline
 \rule[-1ex]{0pt}{3.5ex}  $8 \times 8$ (luma) & An $8 \times 8$ prediction block P is generated for each $8 \times 8$ luma block.
  \\
@@ -102,7 +195,7 @@ prediction modes.
 \hline
 \rule[-1ex]{0pt}{3.5ex}  Chroma & One prediction block P is generated for each chroma component.
 Four possible prediction modes. The same prediction mode is used
-for both chroma components.  \\%表格内容需换行
+for both chroma components.  \\
 \hline
 
 \end{tabular}
@@ -119,9 +212,9 @@ and decoder to form a prediction reference.
    \includegraphics[height=5cm]{44intraprediction.jpg}
    \end{tabular}
    \end{center}
-   \caption[example] 
+   \caption[predmodes] 
 %>>>> use \label inside caption to get Fig. number with \ref{}
-   { \label{fig:example} 
+   { \label{fig:4x4predmodes} 
 $4 \times 4$ intra prediction modes }
    \end{figure}     % 在reference中引用
    
@@ -135,10 +228,10 @@ of a macroblock may be predicted in one operation. Four modes are available.
    \includegraphics[height=5cm]{1616intraprediction.jpg}
    \end{tabular}
    \end{center}
-   \caption[example] 
+   \caption[16x16predmodes] 
 %>>>> use \label inside caption to get Fig. number with \ref{}
-   { \label{fig:example} 
-$4 \times 4$ intra prediction modes }
+   { \label{fig:16x16predmodes} 
+$16 \times 16$ intra prediction modes }
    \end{figure}     % 在reference中引用
    
 Intra prediction of the luma component with an $8 \times 8$ block size is only available in the High
@@ -169,16 +262,16 @@ the list can be classified into three different types:
 \begin{table}[ht]
 \label{tab:list}
 \begin{center}       
-\begin{tabular}{|l|l|} 
+\begin{tabular}{|l|p{10cm}|} 
 \hline
 \rule[-1ex]{0pt}{3.5ex}  List0 (P slice) & A single list of all the reference pictures.  By default, the first picture in
-the List is the most recently decoded picture.\\  %表格内容需换行
+the List is the most recently decoded picture.\\  
 \hline
 \rule[-1ex]{0pt}{3.5ex}  List0 (B slice) & A list of all the reference pictures. By default, the first picture in the List
-is the picture \textbf {before} the current picture in display order.   \\%表格内容需换行
+is the picture \textbf {before} the current picture in display order.   \\
 \hline
 \rule[-1ex]{0pt}{3.5ex}  List1 (B slice) & A list of all the reference pictures. By default, the first picture in the List
-is the picture \textbf {after} the current picture in display order.  \\%表格内容需换行
+is the picture \textbf {after} the current picture in display order.  \\
 \hline
 
 \end{tabular}
@@ -201,19 +294,12 @@ $8 \times 8$, two $4 \times 8$, two $8 \times 4$ or four $4 \times 4$ sub-MB par
    \includegraphics[height=8cm]{marcoblockpartition.jpg}
    \end{tabular}
    \end{center}
-   \caption[example] 
+   \caption[mbpart] 
 %>>>> use \label inside caption to get Fig. number with \ref{}
-   { \label{fig:example1} 
+   { \label{fig:mbpart} 
 Macroblock partitions and sub-macroblock partitions}
    \end{figure}     % 在reference中引用
    
 Each macroblock partition and sub-macroblock partition has one or two motion vectors (x, y). Each of them points to an area of the same size in a reference frame that is used to predict the current partition. Motion vectors for neighboring partitions are often highly correlated and so each motion vector is predicted from vectors of nearby, previously coded partitions. Motion vector is supposed to compensate the decoded picture from the reference ones. It means we could transmit the motion vector instead of the whole redundant of reference marcoblock.
-
-
-
-
-
-
-
 
 \end{document}
