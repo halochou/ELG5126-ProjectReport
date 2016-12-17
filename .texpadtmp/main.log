@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2016.9.22)  17 DEC 2016 13:47
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2016.9.22)  17 DEC 2016 14:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -357,14 +357,14 @@ Overfull \hbox (28.32748pt too wide) in paragraph at lines 134--137
  [] 
  []
 
-
-Overfull \hbox (180.9561pt too wide) in paragraph at lines 167--180
+Missing character: There is no × in font cmr10!
+[305]
+Overfull \hbox (180.9561pt too wide) in paragraph at lines 172--185
  [] 
  []
 
-[305]
 File: images/marcoblockpartition.jpg Graphic file (type QTm)
- <use  "images/marcoblockpartition.jpg" >) (./sections/design.tex
+<use  "images/marcoblockpartition.jpg" >) (./sections/design.tex
 File: images/mcr3b.eps Graphic file (type eps)
  <images/mcr3b.eps>) (./sections/implementation.tex
 

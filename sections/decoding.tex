@@ -84,7 +84,7 @@ block.
 In an intra macroblock, there are three choices of intra prediction block size for the luma
 component, namely $16 \times 16$, $8 \times 8$ or $4 \times 4$. A single prediction block is generated for each
 chroma component. Each prediction block is generated using one of a number of possible
-prediction modes 
+prediction modes. 
 
 \begin{table}[ht]
 \label{tab:list}
@@ -145,6 +145,11 @@ Intra prediction of the luma component with an $8 \times 8$ block size is only a
 profiles. Each $8 \times 8$ luma block in a macroblock is predicted using one of nine
 prediction modes which are as same as the nine modes of $4 \times 4$ luma.
    
+Each chroma component of a macroblock is predicted from previously encoded chroma
+samples above and/or to the left, with both chroma components always using the same
+prediction mode. The four prediction modes are similar to the 16 × 16 luma prediction
+modes. The numbering of the modes is different, but the rules are in common.
+  
 \subsubsection{ Inter-Prediction }
 
 Inter prediction is the process of predicting
@@ -183,15 +188,8 @@ is the picture \textbf {after} the current picture in display order.  \\%表格�
 
 Each $16 \times 16$ P or B macroblock may be predicted using a range
 of block sizes. The macroblock is split into one, two or four
-macroblock partitions:
-
-(a) one $16 \times 16$ macroblock partition 
-
-(b) two $8 \times 16$ macroblock partitions
-
-(c) two $16 \times 8$ macroblock partitions 
-
-(d) four $8 \times 8$ macroblock partitions
+macroblock partitions:(a) one $16 \times 16$ macroblock partition (b) two $8 \times 16$ macroblock partitions
+(c) two $16 \times 8$ macroblock partitions (d) four $8 \times 8$ macroblock partitions
 
 If $8 \times 8$ partition size is chosen, then each $8 \times 8$ block of luma samples and associated chroma
 samples, a sub-macroblock, is split into one, two or four sub-macroblock partitions): one
@@ -209,11 +207,7 @@ $8 \times 8$, two $4 \times 8$, two $8 \times 4$ or four $4 \times 4$ sub-MB par
 Macroblock partitions and sub-macroblock partitions}
    \end{figure}     % 在reference中引用
    
-Each macroblock partition and sub-macroblock partition has one or two motion vectors
-(x, y), each pointing to an area of the same size in a reference frame that is used to predict the
-current partition. Motion vectors for neighboring partitions are often highly
-correlated and so each motion vector is predicted from vectors of nearby, previously coded
-partitions. 
+Each macroblock partition and sub-macroblock partition has one or two motion vectors (x, y). Each of them points to an area of the same size in a reference frame that is used to predict the current partition. Motion vectors for neighboring partitions are often highly correlated and so each motion vector is predicted from vectors of nearby, previously coded partitions. Motion vector is supposed to compensate the decoded picture from the reference ones. It means we could transmit the motion vector instead of the whole redundant of reference marcoblock.
 
 
 
