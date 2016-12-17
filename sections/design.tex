@@ -2,21 +2,21 @@
  
 \begin{document}
 
-The software architecture design is guided by the syntax of H.264 bitstream which is shown as below.
+The software architecture design is guided by the syntax of H.264 bitstream which is shown in Figure \ref{fig:syntax}.
 
 \begin{figure} [ht]
 \begin{center}
 \begin{tabular}{c} %% tabular useful for creating an array of images 
-\includegraphics[height=7cm]{syntax.png}
+\includegraphics[width=0.7\textwidth]{syntax.png}
 \end{tabular}
 \end{center}
 \caption[syntax] 
-{ \label{fig:syntax} H.264 bitstream syntax}
+{ \label{fig:syntax} H.264 bitstream syntax \cite{team2003advanced}}
 \end{figure} 
 
 The project is implemented mainly in object oriented paradigm.
 Primary concepts of H.264 are abstracted as objects.
-A simplified Unified Modeling Language(UML) diagram of the software architecture is shown as below:
+Figure \ref{fig:uml} is a simplified Unified Modeling Language(UML) diagram of the software architecture.
 
 \begin{figure} [ht]
 \begin{center}
@@ -56,7 +56,7 @@ This object has behavior similar to SPS except that there can be multiple PPS ob
 
 \subsection{Slice}
 Slice object contains slice header parsing logic, slice related parameters and macroblock objects.
-Slice-related paramters from slice header segments are parsed and stored here.
+Slice-related parameters from slice header segments are parsed and stored here.
 Arbitrary Macroblock objects are contained in this object which is identical to H.264's layer logic.
 
 \subsection{Macroblock}

@@ -23,14 +23,14 @@ The decoding process is carried out by an H.264 video decoder. Flow diagram is s
 \end{tabular}
 \end{center}
 \caption[decproc] 
-{ \label{fig:decproc} H.264 decoding process}
+{ \label{fig:decproc} H.264 decoding process \cite{richardson2004h} }
 \end{figure} 
 
 Initially, decoder codes compressed bitstream and does entropy decoding, obtaining a coefficient matrix. The following steps are dequantization and IDCT. Residual is output of this stage. Then the decoder will decode the frame depending on the combination of residual and prediction results. Notice that, in the both of coder and decoder, data is processed in units of macroblock. A decoded residual macroblock is formed by re-scaling and inverse transformation. Prediction is created in decoder and is added to the residual to generated a decoded macroblock. 
 
 \subsubsection{ Parsing Process with Entropy Decoding }
 
-Inputs to parsing process are bitstream from contents of video slices. Output of this process are syntax element values. (Video sequence that is represented in a particular format which is synatx).
+As shown in Figure \ref{fig:parsing}, inputs to parsing process are bitstream from contents of video slices. Output of this process are syntax element values. (Video sequence that is represented in a particular format which is syntax).
 
 \begin{figure} [ht]
 \begin{center}
@@ -119,11 +119,11 @@ Used for macroblock type, reference frame index and others. \\
 $code\_num$ is mapped to $k$ as follows:
 \[k = (−1)^{code\_num + 1}ceil(code\_num / 2) \] \\
 \hline
-\rule[-1ex]{0pt}{3.5ex} $me$ & Mapped symbols, $k$ is mapped to $code\_num$ according to a table speciﬁed in the standard. \\
+\rule[-1ex]{0pt}{3.5ex} $me$ & Mapped symbols, $k$ is mapped to $code\_num$ according to a table specified in the standard. \\
 \hline
 \end{tabular}
 \end{center}
-\caption[mapping]{\label{tab:mapping} Code number mapping types} 
+\caption[mapping]{\label{tab:mapping} Code number mapping types\cite{richardson2004h} } 
 \end{table}
 
 \subsubsection{ Context Adaptive Variable Length Coding (CAVLC) }
@@ -153,9 +153,9 @@ coded frames. H.264 provides multiple prediction block sizes, multiple reference
 
 H.264 divides each frame in the video into “macroblocks,” which are blocks of 16x16
 pixels. The macroblocks are decoded from left to right, and then top to bottom. There are three types of marcoblocks for prediction sources, an I Macroblock, a P Macroblock and a B Macroblock. An I Macroblock (I MB) is predicted using intra prediction from
-neighbouring samples in the current frame. A P Macroblock (P MB) is predicted from samples
+neighboring samples in the current frame. A P Macroblock (P MB) is predicted from samples
 in a previously-coded frame which may be before or after the current picture in display order.  Each partition in a B Macroblock (B MB) is
-predicted from samples in one or two previously-coded frames.
+predicted from samples in one or two previously-coded frames. (Figure \ref{fig:mbtypes})
 
   \begin{figure} [ht]
    \begin{center}
@@ -165,22 +165,22 @@ predicted from samples in one or two previously-coded frames.
    \end{center}
    \caption[mbtypes] 
 %>>>> use \label inside caption to get Fig. number with \ref{}
-   { \label{fig:mbtypes} Marcoblock types }
+   { \label{fig:mbtypes} Marcoblock types \cite{richardson2004h} }
    \end{figure}     % 在reference中引用
 
 \subsubsection{ Intra-Prediction }
 
 Intra prediction is used to use part of the frame
-to predict the other parts. An I Macroblock (I MB) is predicted using intra prediction from neighbouring samples in the current frame. For every block of the frame up to 16x16 pixels, intraprediction uses previously decoded neighbor blocks to give an estimate for the new
+to predict the other parts. An I Macroblock (I MB) is predicted using intra prediction from neighbouring samples in the current frame. For every block of the frame up to 16x16 pixels, intra-prediction uses previously decoded neighbor blocks to give an estimate for the new
 block. 
 
 In an intra macroblock, there are three choices of intra prediction block size for the luma
 component, namely $16 \times 16$, $8 \times 8$ or $4 \times 4$. A single prediction block is generated for each
 chroma component. Each prediction block is generated using one of a number of possible
-prediction modes. 
+prediction modes.(Figure \ref{tab:predtypes}) 
 
 \begin{table}[ht]
-\label{tab:list}
+\label{tab:predtypes}
 \begin{center}       
 \begin{tabular}{|l|p{10cm}|} 
 \hline
@@ -200,10 +200,10 @@ for both chroma components.  \\
 
 \end{tabular}
 \end{center}
-\caption{Intra prediction types} 
+\caption{Intra prediction types\cite{richardson2004h} } 
 \end{table}
 
-$4 \times 4$ luma has 9 prediction modes,The samples, labelled A-M, have previously been decoded and reconstructed and they act as the prediction reference, then decoder copies the reference samples to the currently decoding blocks to continue the decode process.
+$4 \times 4$ luma has 9 prediction modes, which are shown in Figure \ref{fig:4x4predmodes}. The samples, labeled A-M, have previously been decoded and reconstructed and they act as the prediction reference, then decoder copies the reference samples to the currently decoding blocks to continue the decode process.
 and decoder to form a prediction reference. 
 
  \begin{figure} [ht]
@@ -215,11 +215,11 @@ and decoder to form a prediction reference.
    \caption[predmodes] 
 %>>>> use \label inside caption to get Fig. number with \ref{}
    { \label{fig:4x4predmodes} 
-$4 \times 4$ intra prediction modes }
+$4 \times 4$ intra prediction modes \cite{richardson2004h} }
    \end{figure}     % 在reference中引用
    
-As an alternative to the 4 × 4 luma modes, the entire 16 × 16 luma component
-of a macroblock may be predicted in one operation. Four modes are available.
+As an alternative to the $4 \times 4$ luma modes, the entire $16 \times 16$ luma component
+of a macroblock may be predicted in one operation. Four modes are available.(Figure \ref{fig:16x16predmodes})
 %此处文字应该在上下两图中间
 
 \begin{figure} [ht]
@@ -231,7 +231,7 @@ of a macroblock may be predicted in one operation. Four modes are available.
    \caption[16x16predmodes] 
 %>>>> use \label inside caption to get Fig. number with \ref{}
    { \label{fig:16x16predmodes} 
-$16 \times 16$ intra prediction modes }
+$16 \times 16$ intra prediction modes \cite{richardson2004h} }
    \end{figure}     % 在reference中引用
    
 Intra prediction of the luma component with an $8 \times 8$ block size is only available in the High
@@ -257,10 +257,10 @@ half- or quarter-sample positions in the luma component of the reference picture
 The decoded pictures stored in the Decoded
 Picture Buffer (DPB), in which case they may be used as
 reference pictures for inter prediction.The pictures in the DPB are listed in a particular order, and
-the list can be classified into three different types:
+the list can be classified into three different types which are described in Table \ref{tab:dpb}.
 
 \begin{table}[ht]
-\label{tab:list}
+\label{tab:dpb}
 \begin{center}       
 \begin{tabular}{|l|p{10cm}|} 
 \hline
@@ -286,7 +286,7 @@ macroblock partitions:(a) one $16 \times 16$ macroblock partition (b) two $8 \ti
 
 If $8 \times 8$ partition size is chosen, then each $8 \times 8$ block of luma samples and associated chroma
 samples, a sub-macroblock, is split into one, two or four sub-macroblock partitions): one
-$8 \times 8$, two $4 \times 8$, two $8 \times 4$ or four $4 \times 4$ sub-MB partitions.
+$8 \times 8$, two $4 \times 8$, two $8 \times 4$ or four $4 \times 4$ sub-MB partitions. This process is illustrated in Figure \ref{fig:mbpart}.
 
 \begin{figure} [ht]
    \begin{center}
@@ -297,7 +297,7 @@ $8 \times 8$, two $4 \times 8$, two $8 \times 4$ or four $4 \times 4$ sub-MB par
    \caption[mbpart] 
 %>>>> use \label inside caption to get Fig. number with \ref{}
    { \label{fig:mbpart} 
-Macroblock partitions and sub-macroblock partitions}
+Macroblock partitions and sub-macroblock partitions \cite{richardson2004h} }
    \end{figure}     % 在reference中引用
    
 Each macroblock partition and sub-macroblock partition has one or two motion vectors (x, y). Each of them points to an area of the same size in a reference frame that is used to predict the current partition. Motion vectors for neighboring partitions are often highly correlated and so each motion vector is predicted from vectors of nearby, previously coded partitions. Motion vector is supposed to compensate the decoded picture from the reference ones. It means we could transmit the motion vector instead of the whole redundant of reference marcoblock.
