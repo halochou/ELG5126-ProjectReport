@@ -2,16 +2,15 @@
  
 \begin{document}
 
-Section headings are centered and formatted completely in uppercase 11-point bold font.  Sections should be numbered sequentially, starting with the first section after the Abstract.  The heading starts with the section number, followed by a period.  In LaTeX, a new section is created with the \verb|\section{}| command, which automatically numbers the sections.
-
-Paragraphs that immediately follow a section heading are leading paragraphs and should not be indented, according to standard publishing style\cite{Lamport94}.  The same goes for leading paragraphs of subsections and sub-subsections.  Subsequent paragraphs are standard paragraphs, with 14-pt.\ (5 mm) indentation.  An extra half-line space should be inserted between paragraphs.  In LaTeX, this spacing is specified by the parameter \verb|\parskip|, which is set in {\ttfamily spie.cls}.  Indentation of the first line of a paragraph may be avoided by starting it with \verb|\noindent|.
-
 \subsection{ Main Decoding Processes }
 
-The subsection heading is left justified and set in 11-point, bold font.  Capitalization rules are the same as those for book titles.  The first word of a subsection heading is capitalized.  The remaining words are also capitalized, except for minor words with fewer than four letters, such as articles (a, an, and the), short prepositions (of, at, by, for, in, etc.), and short conjunctions (and, or, as, but, etc.).  Subsection numbers consist of the section number, followed by a period, and the subsection number within that section.  
+
 
 \subsection{Prediction overview}
-The sub-subsection heading is left justified and its font is 10 point, bold.  Capitalize as for sentences.  The first word of a sub-subsection heading is capitalized.  The rest of the heading is not capitalized, except for acronyms and proper names.  
+
+The prediction methods may have a great influence on the compression performance.H.264 supports two prediction options: \textbf{Intra prediction} using data within
+the current frame, \textbf{Inter prediction} using motion compensated prediction from previously
+coded frames. H.264 provides multiple prediction block sizes, multiple reference frames and special modes. All these features give H.264 a great deal of flexibility in the prediction process. By selecting the best prediction options for an individual macroblock, H.264 can minimize the residual size to produce a highly compressed bitstream.
 
 \subsubsection{ Macroblocks and Further Block Division }
 
@@ -33,17 +32,67 @@ Marcoblock}
 \subsubsection{ Inter-Prediction }
 
 Inter prediction is the process of predicting
-a block of luma and chroma samples from a picture that has
-previously been coded and transmitted, a reference picture. It
+a block of luma and chroma samples from a reference picture that has
+previously been coded and transmitted. It
 takes advantage of the fact that the content of a new frame in
 the video often has high correlation to the data in the
-previous frames.
+previous frames.The offset between the position of the current partition and the prediction
+region in the reference picture is a motion vector. The motion vector may point to integer,
+half- or quarter-sample positions in the luma component of the reference picture. 
 
-Reference pictures
+The decoded pictures stored in the Decoded
+Picture Buffer (DPB), in which case they may be used as
+reference pictures for inter prediction.The pictures in the DPB are listed in a particular order, and
+the list can be classified into three different types:
 
-Macroblock partitions
+\begin{table}[ht]
+\label{tab:list}
+\begin{center}       
+\begin{tabular}{|l|l|} 
+\hline
+\rule[-1ex]{0pt}{3.5ex}  List0 (P slice) & A single list of all the reference pictures.  By default, the first picture in
+the List is the most recently decoded picture.\\  %表格内容需换行
+\hline
+\rule[-1ex]{0pt}{3.5ex}  List0 (B slice) & A list of all the reference pictures. By default, the first picture in the List
+is the picture \textbf {before} the current picture in display order.   \\%表格内容需换行
+\hline
+\rule[-1ex]{0pt}{3.5ex}  List1 (B slice) & A list of all the reference pictures. By default, the first picture in the List
+is the picture \textbf {after} the current picture in display order.  \\%表格内容需换行
+\hline
 
-Motion vector prediction
+\end{tabular}
+\end{center}
+\caption{Three types of DPB list} 
+\end{table}
+
+Each $16 \times 16$ P or B macroblock may be predicted using a range
+of block sizes. The macroblock is split into one, two or four
+macroblock partitions:
+(a) one $16 \times 16$ macroblock partition 
+(b) two $8 \times 16$ partitions
+(c) two $16 \times 8$ partitions or
+(d) four $8 \times 8$ partitions.If $8 \times 8$ partition size is chosen, then each $8 \times 8$ block of luma samples and associated chroma
+samples, a sub-macroblock, is split into one, two or four sub-macroblock partitions): one
+8 × 8, two 4 × 8, two 8 × 4 or four 4 × 4 sub-MB partitions
+
+\begin{figure} [ht]
+   \begin{center}
+   \begin{tabular}{c} %% tabular useful for creating an array of images 
+   \includegraphics[height=10cm]{marcoblockpartition.jpg}
+   \end{tabular}
+   \end{center}
+   \caption[example] 
+%>>>> use \label inside caption to get Fig. number with \ref{}
+   { \label{fig:example1} 
+Macroblock partitions and sub-macroblock partitions}
+   \end{figure}     % 在reference中引用
+   
+Each macroblock partition and sub-macroblock partition has one or two motion vectors
+(x, y), each pointing to an area of the same size in a reference frame that is used to predict the
+current partition. 
+Motion vectors for neighboring partitions are often highly
+correlated and so each motion vector is predicted from vectors of nearby, previously coded
+partitions. 
 
 
 
