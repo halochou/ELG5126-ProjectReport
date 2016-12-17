@@ -9,18 +9,6 @@ Alred, G.~J., Brusaw, C.~T., and Oliu, W.~E.,  [{\em Handbook of Technical
   Writing}{\nolinebreak\hspace{0.1em}]}, St. Martin's, New York (2015 (eleventh
   edition)).
 
-\bibitem{Perelman97}
-Perelman, L.~C., Paradis, J., and Barrett, E.,  [{\em Mayfield Handbook of
-  Technical and Scientific Writing}{\nolinebreak\hspace{0.1em}]}, Mountain
-  View, Mayfield (April 1997).
-\newblock http://mit.imoat.net/handbook/.
-
-\bibitem{Lees-Miller-LaTeX-course-1}
-Lees-Miller, J.~D., ``{Free and Interactive Online Introduction to LaTeX}.''
-  Overleaf, 26 February 2015
-  \url{https://www.overleaf.com/latex/learn/free-online-introduction-to-latex-part-1}.
-\newblock (Accessed: 15 September 2015).
-
 \bibitem{Goossens97}
 Goossens, M., Mittelbach, F., and Rahtz, S.,  [{\em The LaTeX
   Companion}{\nolinebreak\hspace{0.1em}]}, Addison-Wesley, Reading, Mass.
@@ -40,5 +28,17 @@ Gull, S.~F., ``Developments in maximum-entropy data analysis,'' in [{\em
 Hanson, K.~M., ``Introduction to {B}ayesian image analysis,'' in [{\em Medical
   Imaging:\ Image Processing}{\nolinebreak\hspace{0.1em}]},  Loew, M.~H., ed.,
   {\em Proc. SPIE} {\bf 1898},  716--731 (1993).
+
+\bibitem{Lees-Miller-LaTeX-course-1}
+Lees-Miller, J.~D., ``{Free and Interactive Online Introduction to LaTeX}.''
+  Overleaf, 26 February 2015
+  \url{https://www.overleaf.com/latex/learn/free-online-introduction-to-latex-part-1}.
+\newblock (Accessed: 15 September 2015).
+
+\bibitem{Perelman97}
+Perelman, L.~C., Paradis, J., and Barrett, E.,  [{\em Mayfield Handbook of
+  Technical and Scientific Writing}{\nolinebreak\hspace{0.1em}]}, Mountain
+  View, Mayfield (April 1997).
+\newblock http://mit.imoat.net/handbook/.
 
 \end{thebibliography}

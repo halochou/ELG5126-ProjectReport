@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2016.9.22)  16 DEC 2016 19:18
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2016.9.22)  17 DEC 2016 13:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -252,10 +252,13 @@ Package rerunfilecheck Info: Feature \pdfmdfivesum is not available
 LaTeX Warning: Label `fig:example' multiply defined.
 
 
-LaTeX Warning: Label `tab:fonts' multiply defined.
+LaTeX Warning: Label `fig:example' multiply defined.
 
 
-LaTeX Warning: Label `tab:Paper Margins' multiply defined.
+LaTeX Warning: Label `tab:list' multiply defined.
+
+
+LaTeX Warning: Label `fig:example' multiply defined.
 
 )
 \openout1 = `main.aux'.
@@ -320,33 +323,56 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <6> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 33.
  (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/se-ascii-print.def
 File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
-) (./sections/introduction.tex [301
+) (./sections/introduction.tex) (./sections/python.tex [301
 
-]) (./sections/python.tex
+]
 
 LaTeX Warning: Reference `sec:sections' on page 302 undefined on input line 21.
 
-[302]) (./sections/decoding.tex [303]
+) [302] (./sections/decoding.tex
+Missing character: There is no 此 in font cmr10!
+Missing character: There is no 处 in font cmr10!
+Missing character: There is no 有 in font cmr10!
+Missing character: There is no 图 in font cmr10!
+Missing character: There is no 此 in font cmr10!
+Missing character: There is no 处 in font cmr10!
+Missing character: There is no 有 in font cmr10!
+Missing character: There is no 图 in font cmr10!
+ [303]
+Missing character: There is no “ in font cmr10!
+Missing character: There is no ” in font cmr10!
 File: images/marcoblock.jpg Graphic file (type QTm)
- <use  "images/marcoblock.jpg" >
-Overfull \hbox (180.9561pt too wide) in paragraph at lines 51--64
+ <use  "images/marcoblock.jpg" > [304]
+Overfull \hbox (366.98456pt too wide) in paragraph at lines 92--109
  [] 
  []
 
+File: images/44intraprediction.jpg Graphic file (type QTm)
+<use  "images/44intraprediction.jpg" >
 Missing character: There is no × in font cmr10!
 Missing character: There is no × in font cmr10!
-Missing character: There is no × in font cmr10!
-Missing character: There is no × in font cmr10!
+File: images/1616intraprediction.jpg Graphic file (type QTm)
+ <use  "images/1616intraprediction.jpg" >
+Overfull \hbox (28.32748pt too wide) in paragraph at lines 134--137
+ [] 
+ []
+
+
+Overfull \hbox (180.9561pt too wide) in paragraph at lines 167--180
+ [] 
+ []
+
+[305]
 File: images/marcoblockpartition.jpg Graphic file (type QTm)
-<use  "images/marcoblockpartition.jpg" > [304]) (./sections/design.tex
+ <use  "images/marcoblockpartition.jpg" >) (./sections/design.tex
 File: images/mcr3b.eps Graphic file (type eps)
  <images/mcr3b.eps>) (./sections/implementation.tex
 
-LaTeX Warning: Reference `tab:Multimedia-Specifications' on page 305 undefined on input line 4.
+LaTeX Warning: Reference `tab:Multimedia-Specifications' on page 306 undefined on input line 4.
 
-) (./sections/result.tex [305]) (./sections/appendix.tex [306]) (./sections/acknowledgments.tex) (/Users/Zhou/Github/ELG5126-ProjectReport/.texpadtmp/main.bbl [307])
+[306]) (./sections/result.tex [307]) (./sections/appendix.tex [308]) (./sections/acknowledgments.tex) (/Users/Zhou/Github/ELG5126-ProjectReport/.texpadtmp/main.bbl)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 77.
- [308]
+ [309]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 77.
  (/Users/Zhou/Github/ELG5126-ProjectReport/.texpadtmp/main.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 77.
@@ -361,12 +387,12 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 77.
  ) 
 Here is how much of TeX's memory you used:
- 9374 strings out of 493591
- 129517 string characters out of 6143546
- 199909 words of memory out of 5000000
- 12669 multiletter control sequences out of 15000+600000
+ 9380 strings out of 493591
+ 129653 string characters out of 6143546
+ 199350 words of memory out of 5000000
+ 12673 multiletter control sequences out of 15000+600000
  13626 words of font info for 53 fonts, out of 8000000 for 9000
  1347 hyphenation exceptions out of 8191
  29i,12n,46p,1243b,441s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on /Users/Zhou/Github/ELG5126-ProjectReport/.texpadtmp/main.pdf (8 pages).
+Output written on /Users/Zhou/Github/ELG5126-ProjectReport/.texpadtmp/main.pdf (9 pages).
