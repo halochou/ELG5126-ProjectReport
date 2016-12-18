@@ -139,7 +139,7 @@ Residual, the transform coefficients are decoded by CAVLC decoder. Each $8 \time
     
     5. Zero padding 
 
-Decode the number of coefficients and trailing ones, according to input bitstream and standard table 9-5. Then the result is used to decode sign of trailing ones. To decode the levels of the remaining coefficients, we need to obtain the suffix length and get level prefix depending on standard table 9-6. The next step is to decode the number of zeros preceding each non-zero coefficient. The total number of coefficients and standard table 9-7 are needed. After the four steps, use zero to pad the remaining elements.
+Decode the number of coefficients and trailing ones, according to input bitstream and standard table 9-5 \cite{team2003advanced}. Then the result is used to decode sign of trailing ones. To decode the levels of the remaining coefficients, we need to obtain the suffix length and get level prefix depending on standard table 9-6 \cite{team2003advanced}. The next step is to decode the number of zeros preceding each non-zero coefficient. The total number of coefficients and standard table 9-7 \cite{team2003advanced} are needed. After the four steps, use zero to pad the remaining elements.
 
 \subsection{Prediction Overview}
 
